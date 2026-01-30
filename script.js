@@ -1,16 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const observerOptions = {
-        threshold: 0.2
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal');
-            }
-        });
-    }, observerOptions);
-
-    const cards = document.querySelectorAll('.cert-card');
-    cards.forEach(card => observer.observe(card));
+document.querySelectorAll('.nav-links a').forEach(link => {
+    if (link.href === window.location.href) {
+        link.style.color = "#007bff";
+        link.style.borderBottom = "2px solid #007bff";
+    }
 });
