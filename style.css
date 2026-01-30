@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.certificate-section {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #2c3e50;
+}
+
+/* Base Card Layout */
+.cert-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    gap: 40px;
+    opacity: 0; /* Used for JS animation */
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+/* Alternating Logic: Every second card flips! */
+.cert-card:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.cert-content {
+    flex: 1;
+}
+
+.cert-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #e67e22;
+}
+
+.cert-desc {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.verify-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.verify-btn:hover {
+    background-color: #34495e;
+}
+
+.cert-image {
+    flex: 1;
+    text-align: center;
+}
+
+.cert-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .cert-card, .cert-card:nth-child(even) {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+}
+
+/* Class added by JS for scroll animation */
+.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
