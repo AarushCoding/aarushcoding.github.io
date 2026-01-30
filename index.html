@@ -1,70 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Portfolio</a>
+            <div class="logo"><b>MY PORTFOLIO</b></div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
             </ul>
         </div>
     </nav>
-
-    <section id="home" class="hero-section">
-        <div class="hero-content">
+    <main class="container">
+        <section class="hero">
             <div class="hero-text">
                 <h1>Hi! I'm [Your Name]</h1>
-                <p>I am a passionate developer and designer focused on creating clean, user-friendly experiences. Welcome to my personal space where I showcase my journey and achievements.</p>
-                <a href="#certificates" class="cta-btn">View My Work</a>
+                <p>Welcome to my portfolio. I am a developer and designer focused on building great things.</p>
+                <a href="certificates.html" class="btn">View Certificates</a>
             </div>
-            <div class="hero-image">
-                <img src="me.jpg" alt="Profile Picture" class="profile-img">
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Write a brief bio here about your background, your skills, and what drives you. Keep it professional yet personal!</p>
-        </div>
-    </section>
-
-    <section id="certificates" class="certificate-section">
-        <h2 class="section-title">My Certifications</h2>
-
-        <div class="cert-card">
-            <div class="cert-content">
-                <h3 class="cert-title">Advanced Web Development</h3>
-                <p class="cert-desc">Mastered full-stack concepts including React, Node.js, and database management.</p>
-                <a href="#" class="verify-btn">Verify Certificate</a>
-            </div>
-            <div class="cert-image">
-                <img src="https://via.placeholder.com/400x250" alt="Certificate">
-            </div>
-        </div>
-
-        <div class="cert-card">
-            <div class="cert-content">
-                <h3 class="cert-title">UI/UX Design Specialist</h3>
-                <p class="cert-desc">Focused on user-centric design principles and high-fidelity prototyping.</p>
-                <a href="#" class="verify-btn">Verify Certificate</a>
-            </div>
-            <div class="cert-image">
-                <img src="https://via.placeholder.com/400x250" alt="Certificate">
-            </div>
-        </div>
-    </section>
-
-    <script src="script.js"></script>
+            <img src="me.jpg" alt="Profile" class="profile-img">
+        </section>
+    </main>
 </body>
 </html>
