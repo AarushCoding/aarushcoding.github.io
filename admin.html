@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aarush | Cert Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-box { padding: 120px 0; max-width: 600px; margin: 0 auto; }
+        input, textarea {
+            width: 100%; padding: 15px; margin: 10px 0 25px;
+            border: 1px solid #ddd; font-size: 1rem; border-radius: 4px;
+        }
+        #output-container { display: none; margin-top: 40px; }
+        pre {
+            background: #111; color: #fff; padding: 20px;
+            border-radius: 4px; overflow-x: auto; font-size: 0.85rem;
+        }
+        .copy-btn {
+            background: #111; color: #fff; border: none; padding: 10px 20px;
+            cursor: pointer; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">Aarush.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="certificates.html">Certificates</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container admin-box">
+        <h2 class="section-title">Add Certificate</h2>
+
+        <label>Name</label>
+        <input type="text" id="name" placeholder="e.g. Advanced JavaScript">
+
+        <label>Description</label>
+        <textarea id="desc" rows="3" placeholder="What did you achieve?"></textarea>
+
+        <label>Image Filename</label>
+        <input type="text" id="img" placeholder="e.g. js-cert.jpg">
+
+        <label>Verification Link</label>
+        <input type="text" id="link" placeholder="https://... (leave blank if none)">
+
+        <button class="verify-link" style="background:none; cursor:pointer;" onclick="generateCSVRow()">Generate Code</button>
+
+        <div id="output-container">
+            <p style="margin-bottom:10px; font-weight:bold;">Copy this into certificates.html:</p>
+            <pre id="code-output"></pre>
+            <button class="copy-btn" onclick="copyCode()">Copy to Clipboard</button>
+        </div>
+    </main>
+
+    <script>
+
+        function generateCSVRow() {
+            // Get values from inputs
+            const title = document.getElementById('name').value;
+            const desc = document.getElementById('desc').value;
+            const link = document.getElementById('link').value;
+            const image = document.getElementById('img').value;
+
+            // Validate if title is empty
+            if (!title) {
+                alert("Please at least enter a title!");
+                return;
+            }
+
+            // Create the CSV line using the semicolon separator
+            const csvLine = `${title};${desc};${link};${image}`;
+
+            // Update the output text
+            const outputElement = document.getElementById('code-output');
+            outputElement.innerText = csvLine;
+
+            // IMPORTANT: Make the container visible!
+            document.getElementById('output-container').style.display = 'block';
+        }
+
+        function copyCode() {
+            const text = document.getElementById('code-output').textContent;
+            if (!text) return;
+
+            navigator.clipboard.writeText(text).then(() => {
+                alert("CSV line copied! Now paste it into your certs.csv file.");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
