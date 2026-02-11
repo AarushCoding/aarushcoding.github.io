@@ -4,6 +4,7 @@
     --muted: #666666;
     --accent: #0044cc;
     --nav-height: 80px;
+    --wheel-radius: 45px; /* Increase this if text overlaps */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -89,44 +90,38 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); 
 }
 
-/* 3D Wheel Core Styles */
+/* Container that clips the view and adds the fade */
 .wheel-container {
-    perspective: 1000px; /* Essential for 3D depth */
-    height: 60px;        /* Match your H1 height */
+    height: 75px; 
+    perspective: 1000px;
+    position: relative;
     overflow: hidden;
-    margin-bottom: 20px;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    /* This creates the 'Apple Alarm' fade at top and bottom */
+    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
 }
 
+/* The actual spinning drum */
 .wheel {
     position: relative;
-    transform-style: preserve-3d;
     width: 100%;
     height: 100%;
-    animation: rotateWheel 12s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* Each title face on the drum */
 .title {
     position: absolute;
     height: 100%;
     width: 100%;
-    font-size: 3rem;   /* Adjust to your existing H1 size */
-    font-weight: bold;
     display: flex;
     align-items: center;
     backface-visibility: hidden;
-    /* This creates the 'drum' effect */
-    transform: rotateX(calc(var(--i) * 90deg)) translateZ(30px);
-}
-
-/* The Apple-style rotation keyframes */
-@keyframes rotateWheel {
-    0%, 20% { transform: rotateX(0deg); }
-    25%, 45% { transform: rotateX(-90deg); }
-    50%, 70% { transform: rotateX(-180deg); }
-    75%, 95% { transform: rotateX(-270deg); }
-    100% { transform: rotateX(-360deg); }
+    font-size: 3.5rem; /* Match your original H1 size */
+    font-weight: 800;
+    /* Pushes faces out 90 degrees apart */
+    transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
 /* Responsive */
