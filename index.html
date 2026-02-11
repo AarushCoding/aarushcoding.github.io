@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarush | Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,7 +21,7 @@
     <main class="container hero">
         <div class="hero-text">
             <div class="wheel-container">
-                <div class="wheel">
+                <div class="wheel" id="title-wheel">
                     <div class="title" style="--i: 0;">Aarush Naik</div>
                     <div class="title" style="--i: 1;">ML Developer</div>
                     <div class="title" style="--i: 2;">Jaguar Researcher</div>
@@ -28,13 +29,22 @@
                 </div>
             </div>
 
-            <p>I am an ML Developer and researcher specialized in building computer vision systems—like my <strong>Jaguar Re-ID model</strong>—and high-performance digital tools. I focus on bridging the gap between complex data and elegant, clean-coded user experiences.</p>
+            <p class="description">
+                I am an ML Developer specialized in building computer vision systems—like my 
+                <strong>Jaguar Re-ID model</strong>—and high-performance digital tools. 
+                I focus on bridging the gap between complex data and elegant user experiences.
+            </p>
             
             <a href="certificates.html" class="verify-link">Browse Work</a>
         </div>
+        
         <div class="hero-visual">
-            <img src="me.jpg" alt="Aarush" class="profile-img">
+            <div class="img-wrapper">
+                <img src="me.jpg" alt="Aarush" class="profile-img">
+            </div>
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
