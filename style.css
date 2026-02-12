@@ -92,38 +92,36 @@ body {
 
 .wheel-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Aligns the container to the left */
     width: 100%;
-    overflow: visible; 
-    margin: 50px auto; /* Added margin top/bottom to stop overlap with text above/below */
-    perspective: 1200px; /* Increased perspective for a deeper 3D look */
+    perspective: 1200px;
+    overflow: visible;
 }
 
 .wheel {
     position: relative;
     width: 100%;
-    height: 100px; /* Crucial: Must have a height for rotateX to work right */
+    height: 100px;
     transform-style: preserve-3d;
-    /* Change 0.1s to 0.8s for the smooth "Apple" glide */
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
-    will-change: transform;
+    /* This is the secret: it sets the "hinge" of the wheel to the left */
+    transform-origin: left center; 
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Each title face on the drum */
 .title {
     position: absolute;
     height: 100%;
-    width: 100%;
+    width: auto; /* Let the width be defined by the text length */
     display: flex;
-    justify-content: center; /* FIX: Centers text horizontally */
-    align-items: center;     /* FIX: Centers text vertically */
+    justify-content: flex-start; /* Keeps text to the left */
+    align-items: center;
     backface-visibility: hidden;
     font-size: 3.5rem;
     font-weight: 800;
-    white-space: nowrap;    /* FIX: Prevents text from wrapping and getting cut */
+    white-space: nowrap;
     
-    /* Pushes faces out from the center */
+    /* We align the transform to the left edge as well */
+    transform-origin: left center;
     transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
