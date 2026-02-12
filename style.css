@@ -94,20 +94,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;           /* Ensure it takes full width */
-    overflow: visible;     /* Prevents the 'cutoff' look */
-    margin-left: auto;     /* Centers the container */
-    margin-right: auto;    
-    perspective: 1000px;   /* Needed for the 3D depth */
+    width: 100%;
+    overflow: visible; 
+    margin: 50px auto; /* Added margin top/bottom to stop overlap with text above/below */
+    perspective: 1200px; /* Increased perspective for a deeper 3D look */
 }
 
 .wheel {
     position: relative;
-    width: 100%;           /* Or a fixed width like 400px */
+    width: 100%;
+    height: 100px; /* Crucial: Must have a height for rotateX to work right */
     transform-style: preserve-3d;
-    left: 0;
-    transition: transform 0.1s ease-out; 
-    will-change: transform;/* Reset any stray positioning */
+    /* Change 0.1s to 0.8s for the smooth "Apple" glide */
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    will-change: transform;
 }
 
 /* Each title face on the drum */
@@ -116,11 +116,14 @@ body {
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: center; /* FIX: Centers text horizontally */
+    align-items: center;     /* FIX: Centers text vertically */
     backface-visibility: hidden;
-    font-size: 3.5rem; /* Match your original H1 size */
+    font-size: 3.5rem;
     font-weight: 800;
-    /* Pushes faces out 90 degrees apart */
+    white-space: nowrap;    /* FIX: Prevents text from wrapping and getting cut */
+    
+    /* Pushes faces out from the center */
     transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
