@@ -90,39 +90,58 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); 
 }
 
+/* 1. The Outer Container - Controls screen position */
 .wheel-container {
     display: flex;
-    justify-content: flex-start; /* Aligns the container to the left */
+    justify-content: flex-start; /* Aligns everything to the left */
+    align-items: center;
     width: 100%;
-    perspective: 1200px;
-    overflow: visible;
+    height: 120px;               /* Fixed height prevents 'jumping' layout */
+    margin-bottom: 40px;         /* Creates space so it doesn't overlap desc */
+    perspective: 1200px;         /* Depth of the 3D space */
+    overflow: visible;           /* Crucial: lets the 3D effect swing out */
 }
 
+/* 2. The Rotating Wheel - The actual 'drum' */
 .wheel {
     position: relative;
-    width: 100%;
-    height: 100px;
+    width: auto;
+    height: 100%;
     transform-style: preserve-3d;
-    /* This is the secret: it sets the "hinge" of the wheel to the left */
+    /* Sets the 'axle' of the wheel to the left edge */
     transform-origin: left center; 
+    /* 0.8s creates that smooth, high-end fluid motion */
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
 
+/* 3. The Individual Titles - The faces of the wheel */
 .title {
     position: absolute;
     height: 100%;
-    width: auto; /* Let the width be defined by the text length */
+    width: auto;
     display: flex;
-    justify-content: flex-start; /* Keeps text to the left */
-    align-items: left;
+    justify-content: flex-start; /* Keeps text flush left */
+    align-items: center;
     backface-visibility: hidden;
-    font-size: 3.5rem;
+    font-size: 3.5rem;           /* Fredoka or your bold font */
     font-weight: 800;
-    white-space: nowrap;
+    white-space: nowrap;         /* Prevents text from snapping to 2 lines */
     
-    /* We align the transform to the left edge as well */
+    /* Ensure the 3D transform also anchors to the left */
     transform-origin: left center;
+    /* This pushes each face out based on your radius variable */
     transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
+}
+
+/* 4. Small Buffer for Mobile */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.2rem; /* Scales down for smaller screens */
+    }
+    .wheel-container {
+        padding-left: 20px; /* Prevents text from touching the screen edge */
+    }
 }
 
 /* Responsive */
