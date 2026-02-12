@@ -1,151 +1,316 @@
 :root {
     --bg: #0a0a0a;
     --text: #f5f5f7;
-    --muted: #dadada;
-    --accent: #0044cc;
+    --muted: rgba(255, 255, 255, 0.5);
+    --accent: #0071e3;
     --nav-height: 80px;
-    --wheel-radius: 45px; /* Increase this if text overlaps */
+    --wheel-radius: 70px;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-body { 
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-    background: var(--bg); 
-    color: var(--text); 
+body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
-
-/* Minimalist Navbar */
-.navbar { 
-    position: fixed; top: 0; width: 100%; height: var(--nav-height); 
-    background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
-    z-index: 1000; display: flex; align-items: center;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
 }
 
-.nav-container { 
-    width: 100%; display: flex; justify-content: space-between; align-items: center; 
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo { font-size: 1.1rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
-
-.nav-links { display: flex; list-style: none; gap: 40px; }
-.nav-links a { 
-    text-decoration: none; color: var(--text); font-size: 0.85rem; 
-    font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-    opacity: 0.5; transition: opacity 0.3s;
-}
-.nav-links a:hover, .nav-links a.active { opacity: 1; }
-
-/* Hero Section */
-.hero { 
-    padding-top: calc(var(--nav-height) + 60px); 
-    display: grid; grid-template-columns: 1.2fr 0.8fr; 
-    align-items: center; min-height: 85vh; gap: 60px;
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.hero-text h1 { font-size: 5rem; line-height: 1; letter-spacing: -3px; margin-bottom: 20px; }
-.hero-text p { font-size: 1.25rem; color: var(--muted); margin-bottom: 40px; max-width: 500px; }
-
-.profile-img { 
-    width: 100%; aspect-ratio: 4/5; object-fit: cover; 
-    filter: grayscale(100%); transition: filter 0.5s;
-}
-.profile-img:hover { filter: grayscale(0%); }
-
-/* Professional Certificate Rows */
-.section-title { font-size: 2.5rem; margin: 100px 0 60px; letter-spacing: -1px; }
-
-.cert-row { 
-    display: grid; grid-template-columns: 1fr 1fr; 
-    gap: 100px; margin-bottom: 150px; align-items: center; 
+.logo {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Flip Logic */
-.cert-row:nth-child(even) .cert-info { order: 2; }
-.cert-row:nth-child(even) .cert-visual { order: 1; }
-
-.cert-info h3 { font-size: 2rem; margin-bottom: 15px; letter-spacing: -0.5px; }
-.cert-info p { font-size: 1.1rem; color: var(--muted); margin-bottom: 25px; }
-
-.verify-link { 
-    text-decoration: none; color: var(--text); font-weight: 700; 
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
-    border-bottom: 2px solid var(--text); padding-bottom: 5px;
-}
-.cert-visual img { 
-    width: 100%; 
-    display: block; 
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
 }
 
-.cert-visual img:hover { 
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); 
+.nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
 }
 
-/* 1. The Wrapper - This kills any "centering" from the parent */
+.nav-links a:hover, .nav-links a.active {
+    opacity: 1;
+}
+
+.hero {
+    padding-top: calc(var(--nav-height) + 60px);
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    min-height: 85vh;
+    gap: 60px;
+}
+
 .wheel-container {
     display: flex;
-    justify-content: flex-start; /* Forces content to the left */
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
-    height: 140px;               /* Space for the 3.5rem text to flip */
+    height: 100px;
     perspective: 1200px;
-    overflow: visible;           /* Vital for 3D */
-    margin: 20px 0 20px 0;       /* Top, Right, Bottom (space for desc), Left */
-    text-align: left;            /* Overrides any global centering */
+    overflow: visible;
+    margin: 0;
 }
 
-/* 2. The Wheel - The actual rotating unit */
 .wheel {
     position: relative;
-    width: 100%;                 /* Takes full width but text stays left */
+    width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transform-origin: left center; /* The vertical "hinge" is on the left */
+    transform-origin: left center;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
-/* 3. The Individual Titles */
 .title {
     position: absolute;
-    left: 0;                     /* Forced to the absolute left of the wheel */
+    left: 0;
     height: 100%;
     width: auto;
     display: flex;
-    justify-content: flex-start; /* Text starts at the left */
+    justify-content: flex-start;
     align-items: center;
     backface-visibility: hidden;
     font-size: 3.5rem;
     font-weight: 800;
     white-space: nowrap;
-    
-    /* Crucial: The rotation happens relative to the left edge */
     transform-origin: left center;
     transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
-/* 4. Small Buffer for Mobile */
-@media (max-width: 768px) {
-    .title {
-        font-size: 2.2rem; /* Scales down for smaller screens */
-    }
-    .wheel-container {
-        padding-left: 20px; /* Prevents text from touching the screen edge */
-    }
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 10px;
+    max-width: 500px;
+    font-weight: 400;
 }
 
-/* Responsive */
+.profile-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.5s;
+    border-radius: 12px;
+}
+
+.profile-img:hover {
+    filter: grayscale(0%);
+}
+
+.section-title {
+    font-size: 3rem;
+    margin: 120px 0 40px;
+    letter-spacing: -2px;
+}
+
+.filter-pills {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+
+.pill {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pill.active {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.cert-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 120px;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.cert-row:nth-child(even) .cert-info { order: 2;}
+.cert-row:nth-child(even) .cert-visual { order: 1; }
+
+.cert-info h3 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+}
+
+.cert-info p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 30px;
+}
+
+.verify-link {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+}
+
+.cert-visual {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.cert-visual img {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cert-visual:hover img {
+    transform: scale(1.03);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.show img {
+    transform: scale(1);
+}
+
+/* MOBILE FIXES - DO NOT REMOVE */
 @media (max-width: 900px) {
-    .hero, .cert-row { grid-template-columns: 1fr; gap: 40px; }
-    .hero-text h1 { font-size: 3.5rem; }
-    .cert-row:nth-child(even) .cert-info { order: 1; }
+    .hero, .cert-row { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    
+    .hero-text h1, .title, .section-title { 
+        font-size: 2.5rem; 
+    }
+
+    /* Ensures text always stays on top of the image on mobile */
+    .hero-text { order: 1; }
+    .hero-visual { order: 2; }
+
+    .cert-row:nth-child(even) .cert-info, 
+    .cert-row .cert-info { 
+        order: 1; 
+    }
+    
+    .cert-row:nth-child(even) .cert-visual, 
+    .cert-row .cert-visual { 
+        order: 2; 
+    }
+
+    .cert-row { 
+        margin-bottom: 80px; 
+    }
+    
+    .cert-visual { 
+        height: 300px; 
+    }
+
+    /* Adjusting nav for mobile */
+    .nav-links {
+        gap: 20px;
+    }
+    .nav-links a {
+        font-size: 0.7rem;
+    }
 }

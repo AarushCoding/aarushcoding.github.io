@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Aarush Naik</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,13 +19,31 @@
     </nav>
 
     <main class="container">
-        <section style="padding: 150px 0;">
-            <h2 class="section-title">The Story.</h2>
-            <p style="font-size: 1.5rem; max-width: 800px;">
-                I believe that technology should be as beautiful as it is functional. 
-                My journey as a developer is driven by a constant curiosity to learn 
-                and a commitment to excellence.
-            </p>
+        <section class="hero">
+            <div class="hero-text">
+                <h2 class="section-title" style="margin-top: 0;">A description.</h2>
+                <p>I am a Machine Learning enthusiast who loves to use Python and it's libraries to build complex, Machine Learning models and Neural Networks.</p>
+                <p>I enjoy coding to solve problems, help other people and just for fun. I use <strong>Scikit-Learn</strong> and <strong>TensorFlow</strong> to code ML models.</p>
+                
+                <div class="filter-pills" style="margin-top: 30px;">
+                    <span class="pill active">Python</span>
+                    <span class="pill active">Pandas</span>
+                    <span class="pill active">Numpy</span>
+                    <span class="pill active">Scikit-Learn</span>
+                    <span class="pill active">TensorFlow</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="profile.png" alt="Aarush Naik" class="profile-img">
+            </div>
+        </section>
+
+        <section style="margin-bottom: 120px;">
+            <h2 class="section-title">Current Focus/Project.</h2>
+            <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 12px;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Kaggle Competitions</h3>
+                <p style="color: var(--muted); font-size: 1.1rem; max-width: 800px;">I am currently exploring and entering Kaggle Competitions like the Jaguar Re-Identification challenge to improve my ML knowledge.</p>
+            </div>
         </section>
     </main>
 </body>
