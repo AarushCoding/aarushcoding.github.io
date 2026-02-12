@@ -90,27 +90,22 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); 
 }
 
-/* Container that clips the view and adds the fade */
 .wheel-container {
-    height: 75px; 
-    perspective: 1000px;
-    position: relative;
-    overflow: visible; /* Change this from hidden to visible */
-    padding-left: 5px; /* Gives the first letter 'breathing room' */
-    
-    /* The mask-image already handles the clipping for the fade, 
-       so overflow: hidden isn't actually needed! */
-    mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;           /* Ensure it takes full width */
+    overflow: visible;     /* Prevents the 'cutoff' look */
+    margin-left: auto;     /* Centers the container */
+    margin-right: auto;    
+    perspective: 1000px;   /* Needed for the 3D depth */
 }
 
-/* The actual spinning drum */
 .wheel {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100%;           /* Or a fixed width like 400px */
     transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    left: 0;               /* Reset any stray positioning */
 }
 
 /* Each title face on the drum */
