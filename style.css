@@ -114,7 +114,7 @@ body {
     width: auto; /* Let the width be defined by the text length */
     display: flex;
     justify-content: flex-start; /* Keeps text to the left */
-    align-items: center;
+    align-items: left;
     backface-visibility: hidden;
     font-size: 3.5rem;
     font-weight: 800;
