@@ -1,7 +1,7 @@
 :root {
     --bg: #0a0a0a;
     --text: #f5f5f7;
-    --muted: #111111;
+    --muted: #dadada;
     --accent: #0044cc;
     --nav-height: 80px;
     --wheel-radius: 45px; /* Increase this if text overlaps */
