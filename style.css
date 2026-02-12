@@ -90,47 +90,46 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); 
 }
 
-/* 1. The Outer Container - Controls screen position */
+/* 1. The Wrapper - This kills any "centering" from the parent */
 .wheel-container {
     display: flex;
-    justify-content: flex-start; /* Aligns everything to the left */
+    justify-content: flex-start; /* Forces content to the left */
     align-items: center;
     width: 100%;
-    height: 120px;               /* Fixed height prevents 'jumping' layout */
-    margin-bottom: 40px;         /* Creates space so it doesn't overlap desc */
-    perspective: 1200px;         /* Depth of the 3D space */
-    overflow: visible;           /* Crucial: lets the 3D effect swing out */
+    height: 140px;               /* Space for the 3.5rem text to flip */
+    perspective: 1200px;
+    overflow: visible;           /* Vital for 3D */
+    margin: 20px 0 60px 0;       /* Top, Right, Bottom (space for desc), Left */
+    text-align: left;            /* Overrides any global centering */
 }
 
-/* 2. The Rotating Wheel - The actual 'drum' */
+/* 2. The Wheel - The actual rotating unit */
 .wheel {
     position: relative;
-    width: auto;
+    width: 100%;                 /* Takes full width but text stays left */
     height: 100%;
     transform-style: preserve-3d;
-    /* Sets the 'axle' of the wheel to the left edge */
-    transform-origin: left center; 
-    /* 0.8s creates that smooth, high-end fluid motion */
+    transform-origin: left center; /* The vertical "hinge" is on the left */
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
-/* 3. The Individual Titles - The faces of the wheel */
+/* 3. The Individual Titles */
 .title {
     position: absolute;
+    left: 0;                     /* Forced to the absolute left of the wheel */
     height: 100%;
     width: auto;
     display: flex;
-    justify-content: flex-start; /* Keeps text flush left */
+    justify-content: flex-start; /* Text starts at the left */
     align-items: center;
     backface-visibility: hidden;
-    font-size: 3.5rem;           /* Fredoka or your bold font */
+    font-size: 3.5rem;
     font-weight: 800;
-    white-space: nowrap;         /* Prevents text from snapping to 2 lines */
+    white-space: nowrap;
     
-    /* Ensure the 3D transform also anchors to the left */
+    /* Crucial: The rotation happens relative to the left edge */
     transform-origin: left center;
-    /* This pushes each face out based on your radius variable */
     transform: rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
