@@ -12,12 +12,10 @@
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">Aarush.</div>
-            
             <input type="checkbox" id="nav-toggle" class="nav-toggle">
             <label for="nav-toggle" class="nav-toggle-label">
                 <span></span>
             </label>
-
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
@@ -28,17 +26,19 @@
 
     <main class="container">
         <h2 class="section-title">Certificates.</h2>
-
         <div class="filter-pills">
             <button class="pill active" data-filter="all">All</button>
             <button class="pill" data-filter="coding">Coding</button>
             <button class="pill" data-filter="piano">Piano</button>
             <button class="pill" data-filter="theory">Music Theory</button>
         </div>
-
-        <div class="cert-container">
-            </div>
+        <div class="cert-container"></div>
     </main>
+
+    <div class="modal" id="certModal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content"></div>
+    </div>
 
     <script src="certificates.js"></script>
 </body>
