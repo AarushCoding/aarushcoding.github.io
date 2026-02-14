@@ -281,16 +281,21 @@ body {
 
     .hero-text { order: 1; }
     .hero-visual { order: 2; }
-
     .cert-row, .cert-row:nth-child(even) {
         display: flex;
         flex-direction: column;
     }
 
+    
+    .cert-row:nth-child(even) .cert-info { order: 0; }
+    .cert-row:nth-child(even) .cert-visual { order: 0; }
+
     .cert-info { order: 1; }
     .cert-visual { order: 2; width: 100%; height: 300px; }
     
     .cert-row { margin-bottom: 80px; }
+
+
 }
 
 /* --- HAMBURGER LOGIC --- */
