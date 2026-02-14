@@ -167,6 +167,10 @@ body {
     transition: all 0.2s ease;
 }
 
+.pill:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .pill.active {
     background: var(--text);
     color: var(--bg);
@@ -178,9 +182,10 @@ body {
     gap: 80px;
     margin-bottom: 120px;
     align-items: center;
+    transition: opacity 0.5s ease;
 }
 
-.cert-row:nth-child(even) .cert-info { order: 2; }
+.cert-row:nth-child(even) .cert-info { order: 2;}
 .cert-row:nth-child(even) .cert-visual { order: 1; }
 
 .cert-info h3 {
@@ -208,6 +213,10 @@ body {
     display: inline-block;
 }
 
+.verify-link:hover {
+    opacity: 0.7;
+}
+
 .cert-visual {
     width: 100%;
     height: 450px;
@@ -223,21 +232,24 @@ body {
 .cert-visual img {
     max-width: 90%;
     max-height: 90%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     border-radius: 4px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.cert-visual:hover img {
+    transform: scale(1.03);
+}
+
 .modal {
     display: none;
     position: fixed;
     z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
     justify-content: center;
     align-items: center;
@@ -245,71 +257,122 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.modal.show {
-    display: flex;
-    opacity: 1;
-}
+.modal.show { display: flex; opacity: 1; }
 
-.modal-content img {
-    max-width: 90vw;
-    max-height: 80vh;
+.modal img {
+    max-width: 90%; max-height: 90vh;
     object-fit: contain;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
     transform: scale(0.9);
     transition: transform 0.3s ease;
 }
 
-.modal.show img {
-    transform: scale(1);
-}
-
-.modal-close {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    color: white;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 2001;
-}
-
-.nav-toggle { display: none; }
-.nav-toggle-label { display: none; cursor: pointer; padding: 10px; z-index: 1001; }
-.nav-toggle-label span, .nav-toggle-label span::before, .nav-toggle-label span::after {
-    display: block; background: var(--text); height: 2px; width: 24px; border-radius: 2px; position: relative; transition: all 0.3s ease;
-}
-.nav-toggle-label span::before { content: ''; position: absolute; bottom: 8px; }
-.nav-toggle-label span::after { content: ''; position: absolute; top: 8px; }
+.modal.show img { transform: scale(1); }
 
 @media (max-width: 900px) {
-    .nav-toggle-label { display: block; }
-    .nav-links {
-        position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--bg);
-        flex-direction: column; justify-content: center; align-items: center; gap: 50px; transition: right 0.5s ease;
+    .hero, .cert-row { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
     }
-    .nav-toggle:checked ~ .nav-links { right: 0; }
-    .nav-toggle:checked ~ .nav-toggle-label span { background: transparent; }
-    .nav-toggle:checked ~ .nav-toggle-label span::before { transform: rotate(45deg); bottom: 0; }
-    .nav-toggle:checked ~ .nav-toggle-label span::after { transform: rotate(-45deg); top: 0; }
+    
+    .hero-text h1, .title, .section-title { 
+        font-size: 2.5rem; 
+    }
 
-    .hero {
-        grid-template-columns: 1fr;
-        padding-top: 120px;
-        text-align: center;
-    }
-    .wheel-container { justify-content: center; }
-    .title { left: 50%; transform: translateX(-50%) rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius)); }
-    .hero-text p { margin: 10px auto; }
     .hero-text { order: 1; }
     .hero-visual { order: 2; }
-
-    .cert-row {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 30px;
-        margin-bottom: 80px;
+    .cert-row, .cert-row:nth-child(even) {
+        display: flex;
+        flex-direction: column;
     }
-    .cert-row:nth-child(even) .cert-info, .cert-row:nth-child(even) .cert-visual { order: initial; }
-    .cert-info { order: 1 !important; text-align: center; }
-    .cert-visual { order: 2 !important; height: auto; padding: 20px; }
-    .section-title { font-size: 2.5rem; text-align: center; }
+
+    
+    .cert-row:nth-child(even) .cert-info { order: 0; }
+    .cert-row:nth-child(even) .cert-visual { order: 0; }
+
+    .cert-info { order: 1; }
+    .cert-visual { order: 2; width: 100%; height: 300px; }
+    
+    .cert-row { margin-bottom: 80px; }
+
+
+}
+
+/* --- HAMBURGER LOGIC --- */
+.nav-toggle {
+    display: none; /* Hide the actual checkbox */
+}
+
+.nav-toggle-label {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: var(--text);
+    height: 2px;
+    width: 24px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before { bottom: 8px; }
+.nav-toggle-label span::after { top: 8px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .nav-toggle-label {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: 100%;
+        height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1000;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem; /* Larger links for touch */
+    }
+
+    /* Reveal Menu when Checkbox is checked */
+    .nav-toggle:checked ~ .nav-links {
+        right: 0;
+    }
+
+    /* Hamburger to 'X' Animation */
+    .nav-toggle:checked ~ .nav-toggle-label span {
+        background: transparent;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span::before {
+        transform: rotate(45deg);
+        bottom: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span::after {
+        transform: rotate(-45deg);
+        top: 0;
+    }
 }
