@@ -1,25 +1,21 @@
 async function loadCertificates() {
     const container = document.querySelector('.cert-container');
     const pills = document.querySelectorAll('.pill');
+    const modal = document.getElementById('certModal');
+    const modalContent = modal.querySelector('.modal-content');
+    const modalClose = modal.querySelector('.modal-close');
 
     try {
         const response = await fetch('certificates.csv');
         const data = await response.text();
         const rows = data.split('\n').slice(1);
-
-        container.innerHTML = ''; // Clear container
+        container.innerHTML = '';
 
         rows.forEach(row => {
-            if (row.trim() === "") return;
-
-            // Updated to destructure 5 columns
+            if (!row.trim()) return;
             const [title, desc, link, image, category] = row.split(';');
-
-            const linkHTML = link && link.trim() !== ""
-                ? `<a href="${link}" class="verify-link">Verify Credentials</a>`
-                : "";
-
-            // Added data-category to the cert-row div
+            const linkHTML = link && link.trim() !== "" ? `<a href="${link}" class="verify-link" target="_blank">Verify Credentials</a>` : "";
+            
             const certHTML = `
                 <div class="cert-row" data-category="${category ? category.trim().toLowerCase() : 'all'}">
                     <div class="cert-info">
@@ -28,51 +24,48 @@ async function loadCertificates() {
                         ${linkHTML}
                     </div>
                     <div class="cert-visual">
-                        <img src="certificates/${image}" alt="${title} Certificate">
+                        <img src="certificates/${image}" alt="${title}">
                     </div>
                 </div>
             `;
             container.innerHTML += certHTML;
         });
 
-        // Pill Filtering Logic
-        pills.forEach(pill => {
-            pill.addEventListener('click', () => {
-                // Update active state
-                pills.forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
-
-                const filter = pill.getAttribute('data-filter');
-                const certRows = document.querySelectorAll('.cert-row');
-
-                certRows.forEach(row => {
-                    if (filter === 'all' || row.getAttribute('data-category') === filter) {
-                        row.style.display = 'grid'; // Show
-                        row.style.opacity = '1';
-                    } else {
-                        row.style.display = 'none'; // Hide
-                    }
-                });
+        document.querySelectorAll('.cert-visual img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalContent.innerHTML = `<img src="${img.src}">`;
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('show'), 10);
             });
         });
 
     } catch (error) {
-        console.error("Error loading CSV:", error);
+        console.error(error);
     }
+
+    modalClose.addEventListener('click', () => {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+    });
+
+    pills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            pills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            const filter = pill.getAttribute('data-filter');
+            document.querySelectorAll('.cert-row').forEach(row => {
+                const isMatch = filter === 'all' || row.getAttribute('data-category') === filter;
+                row.style.display = isMatch ? (window.innerWidth <= 900 ? 'flex' : 'grid') : 'none';
+            });
+        });
+    });
 }
-
-
-const modal = document.createElement('div');
-modal.className = 'modal';
-document.body.appendChild(modal);
-
-modal.addEventListener('click', () => modal.style.display = 'none');
-
-document.addEventListener('click', (e) => {
-    if (e.target.closest('.cert-visual img')) {
-        modal.innerHTML = `<img src="${e.target.src}">`;
-        modal.style.display = 'flex';
-    }
-});
 
 window.addEventListener('DOMContentLoaded', loadCertificates);
