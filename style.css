@@ -286,6 +286,51 @@ body {
     display: inline-block;
 }
 
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.marquee {
+    display: flex;
+    width: 200%;
+}
+
+.logo-strip {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    animation: scroll-right 20s linear infinite;
+}
+
+.logo-strip img {
+    height: 80px;
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.2;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 20%, #000 90%);
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+}
+
 @media (max-width: 900px) {
     .nav-toggle-label { display: block; }
 
