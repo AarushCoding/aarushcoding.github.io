@@ -331,6 +331,11 @@ body {
         margin-bottom: 80px;
         justify-content: center;
     }
+
+    .cert-info {
+        text-align: center;
+        justify-content: center;
+    }
     
     .cert-row:nth-child(even) .cert-info { order: 1; }
     .cert-row:nth-child(even) .cert-visual { order: 2; }
