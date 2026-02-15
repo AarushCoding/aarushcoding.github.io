@@ -114,17 +114,16 @@ body {
 
 .title {
     position: absolute;
-    left: 50%; 
+    left: 50%;
     top: 50%;
-    height: 100%;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     backface-visibility: hidden;
     font-size: 2.5rem;
     font-weight: 800;
     white-space: nowrap;
-    /* Perfect centering for absolute elements */
+    transform-origin: center;
     transform: translate(-50%, -50%) rotateX(calc(var(--i) * -72deg)) translateZ(var(--wheel-radius));
 }
 
@@ -289,41 +288,37 @@ body {
 }
 
 .bg-container {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: #000;
+    height: 100vh;
+    z-index: 1; 
+    overflow: hidden;
     display: flex;
     align-items: center;
+    background-color: #000;
 }
 
 .marquee {
     display: flex;
-    width: 200%;
+    width: max-content;
 }
 
 .logo-strip {
     display: flex;
-    
-    gap: 550px;
-    width: 100%;
-    animation: scroll-right 20s linear infinite;
+    align-items: center;
+    gap: 150px; 
+    padding-right: 150px;
+    animation: scroll-right 25s linear infinite;
 }
 
 .logo-strip img {
-    height: 600px;
+    height: 120px; 
     width: auto;
     filter: brightness(0) invert(1);
-    opacity: 0.15;
-    transition: opacity 0.3s ease;
+    opacity: 0.1; 
     flex-shrink: 0;
-}
-
-.logo-strip img:hover {
-    opacity: 0.7;
 }
 
 .overlay {
@@ -332,7 +327,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 10%, #000 85%);
+    z-index: 2;
+    background: radial-gradient(circle at center, transparent 0%, #000 80%);
 }
 
 @keyframes scroll-right {
