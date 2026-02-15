@@ -127,6 +127,10 @@ body {
     margin-top: 10px;
     max-width: 500px;
     font-weight: 400;
+    align-self: center;
+    align-items: center;
+    justify-content:center;
+    justify-self:center;
 }
 
 .profile-img {
