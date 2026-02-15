@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@800&display=swap');
 
 :root {
     --bg: #0a0a0a;
@@ -29,13 +29,68 @@ body {
     padding: 0 30px;
 }
 
-/* --- NAVIGATION & LOGO --- */
+/* --- BACKGROUND LOGO MARQUEE --- */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+}
+
+.marquee {
+    display: flex;
+    width: max-content;
+}
+
+.logo-strip {
+    display: flex;
+    align-items: center;
+    gap: 150px;
+    padding-right: 150px;
+    animation: scroll-right 25s linear infinite;
+}
+
+.logo-strip img {
+    height: 120px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.1;
+    flex-shrink: 0;
+    transition: opacity 0.3s ease;
+}
+
+.logo-strip img:hover {
+    opacity: 0.5;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: radial-gradient(circle at center, transparent 0%, #000 85%);
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+}
+
+/* --- NAVIGATION --- */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     height: var(--nav-height);
-    background: rgba(10, 10, 10, 0.8);
+    background: rgba(10, 10, 10, 0.7);
     backdrop-filter: blur(20px);
     z-index: 1000;
     display: flex;
@@ -55,8 +110,15 @@ body {
     font-weight: 900;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: var(--text); /* Restored */
-    text-decoration: none; /* Restored */
+    color: var(--text);
+    text-decoration: none;
+}
+
+.logo a:link, .logo a:visited, .logo a:hover, .logo a:active {
+    color: white;
+    text-decoration: underline overline white 2px;
+    text-underline-offset: 6px;
+    display: inline-block;
 }
 
 .nav-links {
@@ -80,16 +142,17 @@ body {
     opacity: 1;
 }
 
-/* --- HERO SECTION (CENTERED) --- */
+/* --- HERO SECTION --- */
 .hero {
+    position: relative;
     padding-top: var(--nav-height);
     display: flex;
-    flex-direction: column; 
-    align-items: center;    
-    justify-content: center; 
-    min-height: 90vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
     text-align: center;
-    z-index: 3;
+    z-index: 10;
 }
 
 .wheel-container {
@@ -97,11 +160,10 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 120px;
     perspective: 1200px;
     position: relative;
-    margin-bottom: 30px;
-    overflow:hidden;
+    margin-bottom: 20px;
 }
 
 .wheel {
@@ -121,10 +183,11 @@ body {
     justify-content: center;
     align-items: center;
     backface-visibility: hidden;
-    font-size: 2.5rem;
-    font-weight: 800;
+    font-size: 3.5rem;
+    font-weight: 900;
     white-space: nowrap;
-    transform-origin: center;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
     transform: translate(-50%, -50%) rotateX(calc(var(--i) * -72deg)) translateZ(var(--wheel-radius));
 }
 
@@ -132,13 +195,13 @@ body {
     font-size: 1.1rem;
     color: var(--muted);
     margin: 0 auto;
-    max-width: 550px; 
+    max-width: 550px;
     font-weight: 400;
     text-align: center;
-    margin-bottom: 20px
+    margin-bottom: 30px;
 }
 
-/* --- SECTIONS & PILLS --- */
+/* --- SECTIONS & CONTENT --- */
 .section-title {
     font-size: 2.5rem;
     margin: 120px 0 40px;
@@ -164,16 +227,10 @@ body {
     transition: all 0.2s ease;
 }
 
-.pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
+.pill:hover { background: rgba(255, 255, 255, 0.1); }
+.pill.active { background: var(--text); color: var(--bg); }
 
-.pill.active {
-    background: var(--text);
-    color: var(--bg);
-}
-
-/* --- CERTIFICATIONS ROWS --- */
+/* --- CERTIFICATIONS --- */
 .cert-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -232,9 +289,9 @@ body {
     align-items: center;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 12px;
-    overflow: hidden; 
+    overflow: hidden;
     cursor: zoom-in;
-    padding: 20px; 
+    padding: 20px;
 }
 
 .cert-visual img {
@@ -246,15 +303,9 @@ body {
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* --- MOBILE & HAMBURGER --- */
+/* --- MOBILE --- */
 .nav-toggle { display: none; }
-
-.nav-toggle-label {
-    display: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1001;
-}
+.nav-toggle-label { display: none; cursor: pointer; padding: 10px; z-index: 1001; }
 
 .nav-toggle-label span,
 .nav-toggle-label span::before,
@@ -268,89 +319,12 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
-.nav-toggle-label span::before,
-.nav-toggle-label span::after {
-    content: '';
-    position: absolute;
-}
-
+.nav-toggle-label span::before, .nav-toggle-label span::after { content: ''; position: absolute; }
 .nav-toggle-label span::before { bottom: 8px; }
 .nav-toggle-label span::after { top: 8px; }
 
-.logo a:link,
-.logo a:visited,
-.logo a:hover,
-.logo a:active {
-    color: white;
-    text-decoration: underline overline white 2px;
-    text-underline-offset: 6px;
-    text-decoration-skip-ink: none;
-    display: inline-block;
-}
-
-.bg-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 1; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    background-color: #000;
-}
-
-.marquee {
-    display: flex;
-    width: max-content;
-}
-
-.logo-strip {
-    display: flex;
-    align-items: center;
-    gap: 150px; 
-    padding-right: 150px;
-    animation: scroll-right 25s linear infinite;
-}
-
-.logo-strip img {
-    height: 120px; 
-    width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.1; 
-    flex-shrink: 0;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: radial-gradient(circle at center, transparent 0%, #000 80%);
-}
-
-@keyframes scroll-right {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(0%); }
-}
-
-@media (max-width: 768px) {
-    .logo-strip img {
-        height: 300px;
-    }
-    
-    .logo-strip {
-        animation-duration: 25s;
-        gap: 275px;
-    }
-}
-
 @media (max-width: 900px) {
     .nav-toggle-label { display: block; }
-
     .nav-links {
         position: fixed;
         top: 0;
@@ -365,43 +339,24 @@ body {
         transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 1000;
     }
-
-    .nav-toggle:checked ~ .nav-links {
-        right: 0;
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span {
-        background: transparent;
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span::before {
-        transform: rotate(45deg);
-        bottom: 0;
-    }
-
-    .nav-toggle:checked ~ .nav-toggle-label span::after {
-        transform: rotate(-45deg);
-        top: 0;
-    }
+    .nav-toggle:checked ~ .nav-links { right: 0; }
+    .nav-toggle:checked ~ .nav-toggle-label span { background: transparent; }
+    .nav-toggle:checked ~ .nav-toggle-label span::before { transform: rotate(45deg); bottom: 0; }
+    .nav-toggle:checked ~ .nav-toggle-label span::after { transform: rotate(-45deg); top: 0; }
 
     .hero { min-height: 70vh; }
-    .title { font-size: 2.5rem; }
+    .title { font-size: 2rem; }
+    .logo-strip img { height: 60px; }
+    .logo-strip { gap: 80px; padding-right: 80px; }
 
     .cert-row {
         display: flex;
         flex-direction: column;
         gap: 40px;
         margin-bottom: 80px;
-        justify-content: center;
-    }
-
-    .cert-info {
         text-align: center;
-        justify-content: center;
     }
-    
     .cert-row:nth-child(even) .cert-info { order: 1; }
     .cert-row:nth-child(even) .cert-visual { order: 2; }
-    
-    .cert-visual { height: 300px; width: 100%; }
+    .cert-visual { height: 300px; }
 }
