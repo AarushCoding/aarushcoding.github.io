@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let rotation = 0;
 
     function rotateWheel() {
-        rotation += 90; // Add 90 degrees each time
+        rotation += 72; // Add 90 degrees each time
         wheel.style.transform = `rotateX(${rotation}deg)`;
     }
 
