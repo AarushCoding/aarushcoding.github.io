@@ -14,12 +14,18 @@ async function loadCertificates() {
         rows.forEach(row => {
             if (!row.trim()) return;
             const [title, desc, link, image, category] = row.split(';');
+            
+            // Logic for Featured Tag
+            const isFeatured = category && category.toLowerCase().includes('featured');
+            const featuredHTML = isFeatured ? `<span class="featured-tag">Featured</span>` : "";
+            
             const linkHTML = link && link.trim() !== "" ? `<a href="${link}" class="verify-link" target="_blank">Verify Credentials</a>` : "";
             
             const certHTML = `
                 <div class="cert-row" data-category="${category ? category.trim().toLowerCase() : 'all'}">
                     <div class="cert-info">
                         <h3>${title}</h3>
+                        ${featuredHTML}
                         <p>${desc}</p>
                         ${linkHTML}
                     </div>
@@ -31,6 +37,7 @@ async function loadCertificates() {
             container.innerHTML += certHTML;
         });
 
+        // Modal Logic
         document.querySelectorAll('.cert-visual img').forEach(img => {
             img.addEventListener('click', () => {
                 modalContent.innerHTML = `<img src="${img.src}">`;
@@ -40,28 +47,28 @@ async function loadCertificates() {
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("Error loading certificates:", error);
     }
 
-    modalClose.addEventListener('click', () => {
+    // Modal Close Events
+    const closeModal = () => {
         modal.classList.remove('show');
         setTimeout(() => modal.style.display = 'none', 300);
-    });
+    };
 
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 300);
-        }
-    });
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
+    // Filter Logic (supports comma-separated categories)
     pills.forEach(pill => {
         pill.addEventListener('click', () => {
             pills.forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
-            const filter = pill.getAttribute('data-filter');
+            const filter = pill.getAttribute('data-filter').toLowerCase();
+            
             document.querySelectorAll('.cert-row').forEach(row => {
-                const isMatch = filter === 'all' || row.getAttribute('data-category') === filter;
+                const rowCats = row.getAttribute('data-category').split(',').map(c => c.trim());
+                const isMatch = filter === 'all' || rowCats.includes(filter);
                 row.style.display = isMatch ? (window.innerWidth <= 900 ? 'flex' : 'grid') : 'none';
             });
         });
