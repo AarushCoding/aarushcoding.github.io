@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@800&display=swap');
+
 :root {
     --bg: #0a0a0a;
     --text: #f5f5f7;
@@ -305,7 +307,7 @@ body {
 
 .logo-strip {
     display: flex;
-    justify-content: space-around;
+    
     gap: 550px;
     width: 100%;
     animation: scroll-right 20s linear infinite;
