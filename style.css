@@ -127,19 +127,7 @@ body {
     font-weight: 400;
     text-align: center;
 }
-
-.profile-img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-    filter: grayscale(100%);
-    transition: filter 0.5s;
-    border-radius: 12px;
-}
-
-.profile-img:hover {
-    filter: grayscale(0%);
-}
+§
 
 .section-title {
     font-size: 3rem;
