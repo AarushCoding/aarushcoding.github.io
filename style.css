@@ -397,7 +397,12 @@ body {
     margin-bottom: 8px;
 }
 
-.logo a {
-    text-decoration: none;
-    text-color: white;
+
+.logo a:link, 
+.logo a:visited,
+.logo a:hover,
+.logo a:active {
+  color: white;
+  text-decoration: underline white double;
+  text-underline-offset: 5px;
 }
