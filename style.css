@@ -273,6 +273,17 @@ body {
 .nav-toggle-label span::before { bottom: 8px; }
 .nav-toggle-label span::after { top: 8px; }
 
+.logo a:link,
+.logo a:visited,
+.logo a:hover,
+.logo a:active {
+    color: white;
+    text-decoration: underline overline white 2px;
+    text-underline-offset: 6px;
+    text-decoration-skip-ink: none;
+    display: inline-block;
+}
+
 @media (max-width: 900px) {
     .nav-toggle-label { display: block; }
 
