@@ -396,3 +396,7 @@ body {
 .cert-info h3 {
     margin-bottom: 8px;
 }
+
+.logo a {
+    text-decoration: none;
+}
