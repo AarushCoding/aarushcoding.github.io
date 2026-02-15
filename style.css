@@ -27,7 +27,7 @@ body {
     padding: 0 30px;
 }
 
-/* --- NAVIGATION --- */
+/* --- NAVIGATION & LOGO --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -53,6 +53,8 @@ body {
     font-weight: 900;
     letter-spacing: 1px;
     text-transform: uppercase;
+    color: var(--text); /* Restored */
+    text-decoration: none; /* Restored */
 }
 
 .nav-links {
@@ -76,13 +78,13 @@ body {
     opacity: 1;
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION (CENTERED) --- */
 .hero {
     padding-top: var(--nav-height);
     display: flex;
-    flex-direction: column; /* Stacks wheel and text vertically */
-    align-items: center;    /* Centers items horizontally */
-    justify-content: center; /* Centers items vertically */
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
     min-height: 90vh;
     text-align: center;
 }
@@ -109,7 +111,7 @@ body {
 
 .title {
     position: absolute;
-    left: 50%; /* Start at horizontal center */
+    left: 50%; 
     top: 50%;
     height: 100%;
     display: flex;
@@ -119,7 +121,7 @@ body {
     font-size: 3.5rem;
     font-weight: 800;
     white-space: nowrap;
-    /* Centers the absolute element and handles the 3D rotation */
+    /* Perfect centering for absolute elements */
     transform: translate(-50%, -50%) rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
 }
 
@@ -127,12 +129,12 @@ body {
     font-size: 1.1rem;
     color: var(--muted);
     margin: 0 auto;
-    max-width: 550px; /* Wider for better readability */
+    max-width: 550px; 
     font-weight: 400;
     text-align: center;
 }
 
-/* --- CERTIFICATIONS & CONTENT --- */
+/* --- SECTIONS & PILLS --- */
 .section-title {
     font-size: 3rem;
     margin: 120px 0 40px;
@@ -167,6 +169,7 @@ body {
     color: var(--bg);
 }
 
+/* --- CERTIFICATIONS ROWS --- */
 .cert-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -241,7 +244,34 @@ body {
 
 /* --- MOBILE & HAMBURGER --- */
 .nav-toggle { display: none; }
-.nav-toggle-label { display: none; cursor: pointer; z-index: 1001; }
+
+.nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: var(--text);
+    height: 2px;
+    width: 24px;
+    border-radius: 2px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before { bottom: 8px; }
+.nav-toggle-label span::after { top: 8px; }
 
 @media (max-width: 900px) {
     .nav-toggle-label { display: block; }
@@ -258,15 +288,33 @@ body {
         align-items: center;
         gap: 50px;
         transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1000;
     }
 
-    .nav-toggle:checked ~ .nav-links { right: 0; }
+    .nav-toggle:checked ~ .nav-links {
+        right: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span {
+        background: transparent;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span::before {
+        transform: rotate(45deg);
+        bottom: 0;
+    }
+
+    .nav-toggle:checked ~ .nav-toggle-label span::after {
+        transform: rotate(-45deg);
+        top: 0;
+    }
 
     .hero { min-height: 70vh; }
     .title { font-size: 2.5rem; }
 
     .cert-row {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 40px;
         margin-bottom: 80px;
     }
@@ -274,5 +322,5 @@ body {
     .cert-row:nth-child(even) .cert-info { order: 1; }
     .cert-row:nth-child(even) .cert-visual { order: 2; }
     
-    .cert-visual { height: 300px; }
+    .cert-visual { height: 300px; width: 100%; }
 }
