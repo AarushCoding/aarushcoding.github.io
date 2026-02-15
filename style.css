@@ -89,6 +89,7 @@ body {
     justify-content: center; 
     min-height: 90vh;
     text-align: center;
+    z-index: 3;
 }
 
 .wheel-container {
