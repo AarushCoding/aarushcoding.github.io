@@ -122,7 +122,7 @@ body {
     font-weight: 800;
     white-space: nowrap;
     /* Perfect centering for absolute elements */
-    transform: translate(-50%, -50%) rotateX(calc(var(--i) * -90deg)) translateZ(var(--wheel-radius));
+    transform: translate(-50%, -50%) rotateX(calc(var(--i) * -72deg)) translateZ(var(--wheel-radius));
 }
 
 .hero-text p {
