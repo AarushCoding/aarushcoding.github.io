@@ -306,13 +306,13 @@ body {
 .logo-strip {
     display: flex;
     justify-content: space-around;
-    gap: 100px;
+    gap: 550px;
     width: 100%;
     animation: scroll-right 20s linear infinite;
 }
 
 .logo-strip img {
-    height: 350px;
+    height: 600px;
     width: auto;
     filter: brightness(0) invert(1);
     opacity: 0.15;
@@ -340,11 +340,12 @@ body {
 
 @media (max-width: 768px) {
     .logo-strip img {
-        height: 175px;
+        height: 300px;
     }
     
     .logo-strip {
         animation-duration: 25s;
+        gap: 275px;
     }
 }
 
