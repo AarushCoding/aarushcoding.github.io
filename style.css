@@ -311,15 +311,15 @@ body {
 }
 
 .logo-strip img {
-    height: 80px;
+    height: 200px;
     width: auto;
     filter: brightness(0) invert(1);
-    opacity: 0.2;
+    opacity: 0.15;
     transition: opacity 0.3s ease;
 }
 
 .logo-strip img:hover {
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .overlay {
@@ -328,7 +328,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, transparent 20%, #000 90%);
+    background: radial-gradient(circle, transparent 10%, #000 85%);
 }
 
 @keyframes scroll-right {
@@ -338,11 +338,11 @@ body {
 
 @media (max-width: 768px) {
     .logo-strip img {
-        height: 40px;
+        height: 100px;
     }
     
     .logo-strip {
-        animation-duration: 30s;
+        animation-duration: 25s;
     }
 }
 
