@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         wheel.style.transform = `rotateX(${rotation}deg)`;
     }
 
-    // Interval: 3000ms = 3 seconds
-    setInterval(rotateWheel, 3000);
+    // Interval: 2000 = 2 seconds
+    setInterval(rotateWheel, 2000);
 });
