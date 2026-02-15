@@ -306,16 +306,18 @@ body {
 .logo-strip {
     display: flex;
     justify-content: space-around;
+    gap: 100px;
     width: 100%;
     animation: scroll-right 20s linear infinite;
 }
 
 .logo-strip img {
-    height: 200px;
+    height: 350px;
     width: auto;
     filter: brightness(0) invert(1);
     opacity: 0.15;
     transition: opacity 0.3s ease;
+    flex-shrink: 0;
 }
 
 .logo-strip img:hover {
@@ -338,7 +340,7 @@ body {
 
 @media (max-width: 768px) {
     .logo-strip img {
-        height: 100px;
+        height: 175px;
     }
     
     .logo-strip {
