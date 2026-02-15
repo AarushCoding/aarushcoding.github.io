@@ -13,10 +13,10 @@ async function loadCertificates() {
 
         rows.forEach(row => {
             if (!row.trim()) return;
-            const [title, desc, link, image, category] = row.split(';');
+            const [title, desc, link, image, category, featured] = row.split(';');
             
             // Logic for Featured Tag
-            const isFeatured = category && category.toLowerCase().includes('featured');
+            const isFeatured = featured && featured.toLowerCase().includes('yes');
             const featuredHTML = isFeatured ? `<span class="featured-tag">Featured</span>` : "";
             
             const linkHTML = link && link.trim() !== "" ? `<a href="${link}" class="verify-link" target="_blank">Verify Credentials</a>` : "";
