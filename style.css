@@ -207,6 +207,20 @@ body {
     display: flex;
     flex-direction: row;
     gap: 30px;
+    justify-content: center;
+}
+
+.home-link {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--text);
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+    display: inline-block;
 }
 
 /* --- SECTIONS & CONTENT --- */
