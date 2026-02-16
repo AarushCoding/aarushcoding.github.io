@@ -1,4 +1,4 @@
-dasync function loadProjects() {
+async function loadProjects() {
     const container = document.querySelector('.project-container');
     const pills = document.querySelectorAll('.pill');
 
