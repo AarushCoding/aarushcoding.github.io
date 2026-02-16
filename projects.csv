@@ -1,2 +1,3 @@
 title;description;link;image;category
 Sentiment Analysis;An AI-powered sentiment analysis engine with real-time polarity tracking.;https://sentiment.aarushnaik.co.uk;sentiment.png;ml,python,full-stack
+Email Spam/Ham Classifier;A real-time SMS and Email filter utilizing a Multinomial Naive Bayes classifier. Built with a Flask backend and a custom TF-IDF vectorization pipeline to identify phishing and spam patterns with high precision.;https://spam.aarushnaik.co.uk;spam.png;ml,nlp,flask
