@@ -165,22 +165,9 @@ body {
     height: 120px;
     perspective: 1200px;
     position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-    mask-image: linear-gradient(
-        to bottom, 
-        transparent 0%, 
-        black 25%, 
-        black 75%, 
-        transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-        to bottom, 
-        transparent 0%, 
-        black 25%, 
-        black 75%, 
-        transparent 100%
-    );
+    margin-bottom: 30px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%);
 }
 
 .wheel {
@@ -189,23 +176,19 @@ body {
     height: 100%;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
 }
 
 .title {
     position: absolute;
     left: 50%;
     top: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
     font-size: 3.5rem;
     font-weight: 900;
     white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: -0.05em;
-    transform: translate(-50%, -50%) rotateX(calc(var(--i) * -72deg)) translateZ(var(--wheel-radius));
+    backface-visibility: hidden;
+    transform: translate(-50%, -50%) rotateX(calc(var(--i) * -72deg)) translateZ(140px);
 }
 
 .hero-text p {
