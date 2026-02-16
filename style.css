@@ -166,7 +166,21 @@ body {
     perspective: 1200px;
     position: relative;
     margin-bottom: 20px;
-    
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        black 25%, 
+        black 75%, 
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        black 25%, 
+        black 75%, 
+        transparent 100%
+    );
 }
 
 .wheel {
