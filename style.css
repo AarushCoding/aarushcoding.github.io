@@ -375,6 +375,7 @@ body {
     }
     .home-link {
         display: inline-block;
+        width: max-content;
     }
 
     .cert-row {
