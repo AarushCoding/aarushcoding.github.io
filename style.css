@@ -203,6 +203,12 @@ body {
     margin-bottom: 30px;
 }
 
+.home-links {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
 /* --- SECTIONS & CONTENT --- */
 .section-title {
     font-size: 2.5rem;
@@ -350,6 +356,9 @@ body {
     .title { font-size: 2rem; }
     .logo-strip img { height: 60px; }
     .logo-strip { gap: 80px; padding-right: 80px; }
+    .home-links {
+        flex-direction: column;
+    }
 
     .cert-row {
         display: flex;
