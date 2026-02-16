@@ -206,7 +206,7 @@ body {
 .home-links {
     display: flex;
     flex-direction: row;
-    margin-top: 100px
+    margin-top: 200px;
     gap: 30px;
     justify-content: center;
 }
@@ -219,9 +219,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     border-bottom: 1px solid var(--text);
-    padding-bottom: 4px;
+    padding-bottom: 30px;
     transition: opacity 0.2s;
     display: inline-block;
+    width: max-content;
 }
 
 /* --- SECTIONS & CONTENT --- */
