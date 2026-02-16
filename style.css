@@ -373,6 +373,9 @@ body {
     .home-links {
         flex-direction: column;
     }
+    .home-link {
+        display: inline-block;
+    }
 
     .cert-row {
         display: flex;
