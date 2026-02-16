@@ -153,6 +153,8 @@ body {
     min-height: 100vh;
     text-align: center;
     z-index: 10;
+    overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .wheel-container {
