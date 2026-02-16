@@ -1,4 +1,4 @@
-async function loadProjects() {
+dasync function loadProjects() {
     const container = document.querySelector('.project-container');
     const pills = document.querySelectorAll('.pill');
 
@@ -14,7 +14,7 @@ async function loadProjects() {
             
             // Clean up tags for display
             const tags = category ? category.split(',').map(tag => tag.trim()) : [];
-            const tagsHTML = tags.map(tag => `<span class="project-tag">#${tag}</span>`).join(' ');
+            const tagsHTML = tags.map(tag => `<span class="featured-tag">#${tag}</span>`).join(' ');
 
             const projectHTML = `
                 <div class="cert-row" data-categories='${JSON.stringify(tags.map(t => t.toLowerCase()))}'>
