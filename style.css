@@ -145,7 +145,7 @@ body {
 /* --- HERO SECTION --- */
 .hero {
     position: relative;
-    padding-top: 300px;
+    padding-top: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
