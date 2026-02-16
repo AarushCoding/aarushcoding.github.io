@@ -161,7 +161,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
     height: 120px;
     perspective: 1200px;
     position: relative;
