@@ -206,7 +206,7 @@ body {
 .home-links {
     display: flex;
     flex-direction: row;
-    margin-top: 200px;
+    margin-top: 175px;
     gap: 30px;
     justify-content: center;
 }
@@ -374,6 +374,7 @@ body {
     .logo-strip { gap: 80px; padding-right: 80px; }
     .home-links {
         flex-direction: column;
+        align-items: center;
     }
     .home-link {
         display: inline-block;
