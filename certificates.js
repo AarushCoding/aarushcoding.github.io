@@ -17,7 +17,7 @@ async function loadCertificates() {
             
             // Logic for Featured Tag
             const isFeatured = featured && featured.toLowerCase().includes('yes');
-            const featuredHTML = isFeatured ? `<span class="featured-tag">Featured</span>` : "";
+            const featuredHTML = isFeatured ? `<span class="featured-tag">New</span>` : "";
             
             const linkHTML = link && link.trim() !== "" ? `<a href="${link}" class="verify-link" target="_blank">Verify Credentials</a>` : "";
             
