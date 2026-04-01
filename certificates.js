@@ -40,8 +40,21 @@ async function loadCertificates() {
         // Modal Logic
         document.querySelectorAll('.cert-visual img').forEach(img => {
             img.addEventListener('click', () => {
-                modalContent.innerHTML = `<img src="${img.src}">`;
+                // Clear content and add image
+                modalContent.innerHTML = `<img src="${img.src}" id="modalImg" alt="Enlarged Certificate">`;
+                
+                const modalImg = document.getElementById('modalImg');
+                
+                // Handle inner-image zoom toggle
+                modalImg.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevents closing modal when clicking image
+                    modalImg.classList.toggle('zoomed');
+                });
+        
                 modal.style.display = 'flex';
+                // Prevent background scrolling while modal is open
+                document.body.style.overflow = 'hidden'; 
+                
                 setTimeout(() => modal.classList.add('show'), 10);
             });
         });
@@ -53,7 +66,11 @@ async function loadCertificates() {
     // Modal Close Events
     const closeModal = () => {
         modal.classList.remove('show');
-        setTimeout(() => modal.style.display = 'none', 300);
+        document.body.style.overflow = 'auto'; // Restore scrolling
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modalContent.innerHTML = ''; // Clear image to reset zoom state
+        }, 300);
     };
 
     modalClose.addEventListener('click', closeModal);
