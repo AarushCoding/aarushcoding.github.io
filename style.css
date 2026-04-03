@@ -53,7 +53,7 @@ body {
     align-items: center;
     gap: 120px;
     padding-right: 150px;
-    animation: scroll-right 25s linear infinite;
+    animation: scroll-right 10s linear infinite;
 }
 
 .logo-strip img {
